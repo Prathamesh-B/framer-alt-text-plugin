@@ -1,10 +1,163 @@
-/* Your Plugin CSS */
+* {
+    box-sizing: border-box;
+}
 
-main {
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+}
+
+.main {
+    padding: 16px;
+    background-color: #1a1a1a;
+    color: #ffffff;
+    min-height: 100vh;
+    font-size: 14px;
+}
+
+.header {
+    margin-bottom: 16px;
+}
+
+.title {
+    font-size: 13px;
+    font-weight: 600;
+    margin: 0;
+    color: #ffffff;
+}
+
+.status-message {
+    font-size: 12px;
+    color: #9ca3af;
+    text-align: center;
+    padding: 20px;
+}
+
+.error-message {
+    font-size: 12px;
+    color: #ef4444;
+    text-align: center;
+    padding: 20px;
+}
+
+.image-list {
     display: flex;
     flex-direction: column;
-    align-items: start;
-    padding: 0 15px 15px 15px;
-    height: 100%;
-    gap: 15px;
+    gap: 12px;
+}
+
+.image-item {
+    display: flex;
+    align-items: center;
+    padding: 12px;
+    background-color: #2a2a2a;
+    border-radius: 8px;
+    gap: 12px;
+}
+
+.image-thumbnail {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 4px;
+    flex-shrink: 0;
+}
+
+.image-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.alt-text-input {
+    width: 100%;
+    background: transparent;
+    border: 1px solid #404040;
+    border-radius: 4px;
+    padding: 8px;
+    color: #ffffff;
+    font-size: 13px;
+    font-family: inherit;
+}
+
+.alt-text-input:focus {
+    outline: none;
+    border-color: #3b82f6;
+}
+
+.alt-text-input::placeholder {
+    color: #6b7280;
+}
+
+.button-group {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.generate-button {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 6px 12px;
+    background-color: #3b82f6;
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.generate-button:hover:not(:disabled) {
+    background-color: #2563eb;
+}
+
+.generate-button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    background-color: #6b7280;
+}
+
+.generate-icon {
+    font-size: 12px;
+}
+
+.generate-text {
+    font-size: 12px;
+}
+
+.edit-button {
+    padding: 4px;
+    background: transparent;
+    border: none;
+    color: #9ca3af;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: color 0.2s;
+}
+
+.edit-button:hover {
+    color: #ffffff;
+}
+
+.edit-icon {
+    width: 16px;
+    height: 16px;
+}
+
+.item-error {
+    font-size: 11px;
+    color: #ef4444;
+    margin-top: 4px;
+}
+
+input:focus {
+    outline: none;
+}
+
+button:disabled {
+    opacity: 0.6;
 }

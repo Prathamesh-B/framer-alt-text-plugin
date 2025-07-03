@@ -4,5 +4,9 @@
   "modes": [
     "canvas"
   ],
-  "icon": "/icon.svg"
+  "icon": "/icon.svg",
+  "permissions": [
+    "canvas:read",
+    "canvas:write"
+  ]
 }
