@@ -23,6 +23,11 @@ export async function fetchImages(): Promise<ImageData[]> {
 
 export async function updateImageAltText(nodeId: string, image: ImageAsset, altText: string) {
     try {
+        // Check if the user has permission to call setAttributes
+        if (!framer.isAllowedTo("setAttributes")) {
+            throw new Error("Insufficient permissions to update alt text.")
+        }
+
         await framer.setAttributes(nodeId, {
             backgroundImage: image.cloneWithAttributes({
                 altText,
