@@ -90,12 +90,6 @@ body {
     color: #6b7280;
 }
 
-.button-group {
-    display: flex;
-    gap: 8px;
-    align-items: center;
-}
-
 .generate-button {
     display: flex;
     align-items: center;
@@ -130,7 +124,8 @@ body {
 }
 
 .edit-button {
-    padding: 4px;
+    padding: 6px 12px;
+    margin-top: 4px;
     background: transparent;
     border: none;
     color: #9ca3af;

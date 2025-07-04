@@ -85,6 +85,38 @@ export function App() {
         }
     }
 
+    const handleEditAltText = async (index: number) => {
+        const imageData = images[index]
+        const newAltText = inputValues[index] ?? imageData.altText
+        if (!canSetAttributes) {
+            setImages((prev) =>
+                prev.map((img, i) =>
+                    i === index
+                        ? { ...img, error: "Cannot edit: Insufficient permissions." }
+                        : img
+                )
+            )
+            return
+        }
+
+        try {
+            setImages((prev) =>
+                prev.map((img, i) =>
+                    i === index ? { ...img, altText: newAltText, error: undefined } : img
+                )
+            )
+            await updateImageAltText(imageData.nodeId, imageData.image, newAltText)
+        } catch (err) {
+            setImages((prev) =>
+                prev.map((img, i) =>
+                    i === index
+                        ? { ...img, error: err.message || "Failed to update alt text." }
+                        : img
+                )
+            )
+        }
+    }
+
     const handleInputChange = (index: number, value: string) => {
         setInputValues((prev) => ({ ...prev, [index]: value }))
     }
@@ -125,31 +157,22 @@ export function App() {
                                 {imageData.error && (
                                     <div className="item-error">{imageData.error}</div>
                                 )}
-                                <div className="button-group">
+                                <div>
                                     <button
                                         onClick={() => handleGenerateAltText(index)}
                                         disabled={imageData.isGenerating || !canSetAttributes}
                                         className="generate-button"
                                     >
-                                        <span className="generate-icon">✦</span>
                                         <span className="generate-text">
-                                            {imageData.isGenerating ? "..." : "Generate"}
+                                            {imageData.isGenerating ? "..." : <><span className="generate-icon">✦</span> Generate</>}
                                         </span>
                                     </button>
-                                    <button className="edit-button" disabled={!canSetAttributes}>
-                                        <svg
-                                            className="edit-icon"
-                                            fill="none"
-                                            viewBox="0 0 24 24"
-                                            stroke="currentColor"
-                                        >
-                                            <path
-                                                strokeLinecap="round"
-                                                strokeLinejoin="round"
-                                                strokeWidth={2}
-                                                d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"
-                                            />
-                                        </svg>
+                                    <button
+                                        onClick={() => handleEditAltText(index)}
+                                        disabled={!canSetAttributes}
+                                        className="edit-button"
+                                    >
+                                        Save Manual Edit
                                     </button>
                                 </div>
                             </div>
